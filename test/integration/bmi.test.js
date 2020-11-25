@@ -29,6 +29,16 @@ describe("BMI tests", () => {
   
     expect(page.url()).toBe("http://localhost:8080/");
   });
+  
+  test("Writes category", async () => {
+    await page.goto("http://localhost:8080/result?cm=1&kg=10", {waitUntil: 'load'});
+  
+    const result = await page.evaluate(() => {
+      return document.getElementById("category").innerText;
+    });
+
+    expect(result).toBe("Obese");
+  });
 
 });
 
