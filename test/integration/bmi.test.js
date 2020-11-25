@@ -1,10 +1,34 @@
 const puppeteer = require('puppeteer');
 
-test("Browser opens", async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto('https://news.ycombinator.com', {waitUntil: 'networkidle2'});
-  await page.pdf({path: 'hn.pdf', format: 'A4'});
 
-  await browser.close();
+describe("BMI tests", () => {
+  
+  let page = null;
+
+  beforeAll(async () => {
+    const browser = await puppeteer.launch();
+    page = await browser.newPage();
+  });
+
+  afterAll(async () => {
+    await browser.close();
+  });
+
+  test("Calculates and prints BMI", async () => {
+    await page.goto("http://localhost:8080/result?cm=1&kg=10", {waitUntil: 'load'});
+  
+    const result = await page.evaluate(() => {
+      return document.getElementById("result").innerText;
+    });
+
+    expect(Number(result)).toBe(100000);
+  });
+  
+  test("Handles wrong input", async () => {
+    await page.goto("http://localhost:8080/result?cm=notANumber&kg=10", {waitUntil: 'load'});
+  
+    expect(page.url()).toBe("http://localhost:8080/");
+  });
+
 });
+

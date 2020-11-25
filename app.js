@@ -16,7 +16,7 @@ app.get("/result", (req, res) => {
     var m = (parseInt(req.query.cm, 10) / 100);
     var kg = req.query.kg;
 
-    if(m == 0 || isNaN(m)){
+    if(m == 0 || isNaN(m)){ // Decision 1
         res.redirect("/");
     }else {
         var bmi = (kg / (m * m));
@@ -24,8 +24,6 @@ app.get("/result", (req, res) => {
             bmi: bmi
         });
     }
-
-  
 });
 
 var port = 8080;

@@ -4,7 +4,10 @@
   "description": "BMI Calcuator with NodeJS and ExpressJS",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "start-server": "node app.js",
+    "test": "jest",
+    "ci": "start-server-and-test start-server http://localhost:8080 test",
+    "runt": "node app.js & jest"
   },
   "keywords": [
     "nodejs",
@@ -22,6 +25,7 @@
     "puppeteer": "^5.5.0"
   },
   "devDependencies": {
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "start-server-and-test": "^1.11.6"
   }
 }
