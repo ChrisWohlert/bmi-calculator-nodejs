@@ -4,12 +4,30 @@
 const calculateBMI = (cm, kg) => {
     const meter = cm / 100;
     const bmi = kg / (meter * meter);
-    return  { value: bmi, category: calculateCategory(bmi) };
-}    
+    return { value: bmi, category: calculateCategory(bmi) };
+}
 
 const calculateCategory = (bmi) => {
-    if(bmi < 18.5){
+    if (isNaN(bmi)) {
+        throw 'BMI must be a number';
+    }
+    else if (bmi < 0) {
+        throw 'BMI cannot be a negative value';
+    }
+    else if (bmi == 0) {
+        throw 'BMI cannot be zero';
+    }
+    else if (bmi < 18.5) {
         return categories.underweight;
+    }
+    else if (bmi < 25) {
+        return categories.healthy;
+    }
+    else if (bmi < 30) {
+        return categories.overweight;
+    }
+    else {
+        return categories.obese;
     }
 }
 
@@ -23,5 +41,6 @@ const categories = {
 
 module.exports = {
     calculateBMI,
+    calculateCategory,
     categories
 }
