@@ -7,8 +7,7 @@
     "start-server": "node app.js",
     "test-integration": "jest",
     "test": "jest test/unit/",
-    "ci": "start-server-and-test start-server http://localhost:8080 test-integration",
-    "runt": "node app.js && jest"
+    "ci": "start-server-and-test start-server http://localhost:8080 test-integration"
   },
   "keywords": [
     "nodejs",

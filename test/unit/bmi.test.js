@@ -8,7 +8,7 @@ describe("bmi test", () => {
     test("Calculates BMI correctly", () => {
         const bmi = calculator.calculateBMI(1, 10);
 
-        expect(bmi.value).toBe(100000);
+        expect(bmi).toBe(100000);
     });
 
     test("Has correct categories", () => {

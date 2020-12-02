@@ -4,7 +4,7 @@
 const calculateBMI = (cm, kg) => {
     const meter = cm / 100;
     const bmi = kg / (meter * meter);
-    return { value: bmi, category: calculateCategory(bmi) };
+    return bmi;
 }
 
 const calculateCategory = (bmi) => {
