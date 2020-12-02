@@ -7,7 +7,7 @@ describe("BMI tests", () => {
 
   beforeAll(async () => {
     const browser = await puppeteer.launch();
-    page = await browser.newPage();
+    page = await browser.newPage({ waitUntil: 'load' });
   });
 
   afterAll(async () => {

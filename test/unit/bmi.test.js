@@ -20,7 +20,7 @@ describe("bmi test", () => {
         const bmi = calculator.calculateBMI(100, 18.4);
 
         expect(bmi.value).toBe(18.4);
-        expect(bmi.category).toBe(calculator.categories.underweight);
+        expect(bmi.category).toBe("Underweight");
     });
 
 });
