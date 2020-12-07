@@ -15,8 +15,8 @@ app.get("/", (req, res) => {
 
 app.get("/result", (req, res) => {
     const { cm, kg } = req.query;
-    let bmi = calculator.calculateBMI(cm, kg);
-    let category = tryCalculateCategory(bmi);
+    const bmi = calculator.calculateBMI(cm, kg);
+    const category = tryCalculateCategory(bmi);
     res.render("pages/result", {
         bmi: bmi,
         category: category

@@ -27,7 +27,6 @@ describe("bmi test", () => {
     });
 
     each([
-        [18.3, "Underweight"],
         [18.4, "Underweight"],
         [18.5, "Healthy"],
         [24.9, "Healthy"],
@@ -37,5 +36,38 @@ describe("bmi test", () => {
         [39.9, "Obese"]
     ]).it("when calculated weight is '%d' category is '%s'", (bmi, expected) => {
         expect(calculator.calculateCategory(bmi)).toBe(expected);
+    });
+});
+
+describe("waist to hip test", () => {
+
+    test("calculates waist to hip correctly", () => {
+        const ratio = calculator.calculateWaistToHipRatio(32, 32);
+
+        expect(ratio).toBe(1);
+    });
+
+    test("has correct categories", () => {
+        expect("Normal weight").toBe(calculator.waistHipCategories.normal);
+        expect("Overweight").toBe(calculator.waistHipCategories.overweight);
+        expect("Obese").toBe(calculator.waistHipCategories.obese);
+    });
+
+    each([
+        [0.89, "Normal weight"],
+        [0.90, "Overweight"],
+        [0.99, "Overweight"],
+        [1, "Obese"]
+    ]).it("when calculated for males ratio is '%d' category is '%s'", (waistHipRatio, expected) => {
+        expect(calculator.calculateWaistToHipCategory(waistHipRatio)).toBe(expected);
+    });
+
+    each([
+        [0.79, "Normal weight"],
+        [0.80, "Overweight"],
+        [0.84, "Overweight"],
+        [0.85, "Obese"]
+    ]).it("when calculated for females ratio is '%d' category is '%s'", (waistHipRatio, expected) => {
+        expect(calculator.calculateWaistToHipCategory(waistHipRatio)).toBe(expected);
     });
 });
