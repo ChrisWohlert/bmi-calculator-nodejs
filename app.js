@@ -15,21 +15,24 @@ app.get("/", (req, res) => {
 
 app.get("/result", (req, res) => {
     const { cm, kg } = req.query;
-    let bmi;
-    let category;
-    try {
-        bmi = calculator.calculateBMI(cm, kg);
-        category = calculator.calculateCategory(bmi);
-    }
-    catch (err) {
-        bmi = 0;
-        category = err;
-    }
+    let bmi = calculator.calculateBMI(cm, kg);
+    let category = tryCalculateCategory(bmi);
     res.render("pages/result", {
         bmi: bmi,
         category: category
     });
 });
+
+function tryCalculateCategory(bmi) {
+    let category;
+    try {
+        category = calculator.calculateCategory(bmi);
+    }
+    catch (err) {
+        category = err;
+    }
+    return category;
+}
 
 var port = 8080;
 console.log("App is running on http://localhost:"+port)
