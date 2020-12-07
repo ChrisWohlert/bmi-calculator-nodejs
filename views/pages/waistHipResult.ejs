@@ -1,0 +1,10 @@
+<% include ../partials/header %>
+
+<div class="alert alert-success">
+    <strong>Note:</strong>
+    Your waist to hip ratio is: 
+    <strong id="result"><%= Math.round(waistToHip * 100) / 100 %></strong><span id="category"><%= category %></span>
+</div>
+
+
+<% include ../partials/footer %>

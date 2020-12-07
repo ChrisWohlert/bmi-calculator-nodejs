@@ -23,6 +23,16 @@ app.get("/result", (req, res) => {
     });
 });
 
+app.get("/waistHipResult", (req, res) => {
+    const { waist, hip, sex } = req.query;
+    const ratio = calculator.calculateWaistToHipRatio(waist, hip);
+    const category = tryCalculateWaistHipCategory(ratio, sex);
+    res.render("pages/waistHipResult", {
+        waistToHip: ratio,
+        category: category
+    });
+});
+
 function tryCalculateCategory(bmi) {
     let category;
     try {
@@ -32,6 +42,14 @@ function tryCalculateCategory(bmi) {
         category = err;
     }
     return category;
+}
+
+function tryCalculateWaistHipCategory(ratio, sex){
+    try{
+        return (sex == "male" ? calculator.calculateWaistToHipCategoryForMales : calculator.calculateWaistToHipCategoryForFemales)(ratio);
+    }catch (err) {
+        return err;
+    }
 }
 
 var port = 8080;
