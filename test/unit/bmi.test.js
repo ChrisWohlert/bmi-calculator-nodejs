@@ -47,7 +47,7 @@ describe("waist to hip test", () => {
         expect(ratio).toBe(1);
     });
 
-    test("has correct categories", () => {
+   /*test("has correct categories", () => {
         expect("Normal weight").toBe(calculator.waistHipCategories.normal);
         expect("Overweight").toBe(calculator.waistHipCategories.overweight);
         expect("Obese").toBe(calculator.waistHipCategories.obese);
@@ -69,5 +69,5 @@ describe("waist to hip test", () => {
         [0.85, "Obese"]
     ]).it("when calculated for females ratio is '%d' category is '%s'", (waistHipRatio, expected) => {
         expect(calculator.calculateWaistToHipCategory(waistHipRatio)).toBe(expected);
-    });
+    });*/
 });

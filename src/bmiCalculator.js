@@ -38,9 +38,12 @@ const categories = {
     obese: "Obese"
 }
 
+const calculateWaistToHipRatio = (waist, hip) => waist / hip;
+
 
 module.exports = {
     calculateBMI,
     calculateCategory,
-    categories
+    categories,
+    calculateWaistToHipRatio
 }
