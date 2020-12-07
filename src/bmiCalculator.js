@@ -46,7 +46,7 @@ const waistHipCategories = {
     obese: "Obese"
 }
 
-const calculateWaistToHipCategory= (waistHipRatio) => {
+const calculateWaistToHipCategory = (waistHipRatio) => {
     if (isNaN(waistHipRatio)) {
         throw 'Waist to hip ratio must be a number';
     }

@@ -62,15 +62,15 @@ describe("waist to hip test", () => {
         expect(calculator.calculateWaistToHipCategory(waistHipRatio)).toBe(expected);
     });
 
-    /*each([
+    each([
         ["NaN", "Waist to hip ratio must be a number"],
         [-0.1, "Waist to hip ratio cannot be a negative value"],
         [0, "Waist to hip ratio cannot be zero"]
-    ]).it("when calculated weight is '%d' throws invalid exception", (bmi, expected) => {
-        expect(() => calculator.calculateCategory(bmi)).toThrow(expected);
+    ]).it("when calculated waist to hip is '%d' throws invalid exception", (bmi, expected) => {
+        expect(() => calculator.calculateWaistToHipCategory(bmi)).toThrow(expected);
     });
 
-    each([
+    /*each([
         [0.79, "Normal weight"],
         [0.80, "Overweight"],
         [0.84, "Overweight"],
