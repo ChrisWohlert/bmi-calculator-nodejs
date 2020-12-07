@@ -99,8 +99,8 @@ describe("waist to hip test", () => {
     expect(result).toBe("Overweight");
   });
   
-  /*test("writes category for females", async () => {
-    await page.goto("http://localhost:8080/waistHipResult?waist=8&hip=10", {waitUntil: 'load'});
+  test("writes category for females", async () => {
+    await page.goto("http://localhost:8080/waistHipResult?waist=8&hip=10&sex=female", {waitUntil: 'load'});
   
     const result = await page.evaluate(() => {
       return document.getElementById("category").innerText;
@@ -113,8 +113,8 @@ describe("waist to hip test", () => {
       [0.85, "Normal weight"],
       [0.95, "Overweight"],
       [1.05, "Obese"]
-  ]).it("when ratio for males is '%d' category is '%s'", async (bmi, expected) => {
-    await page.goto(`http://localhost:8080/waistHipResult?waist=${bmi}&hip=10`, {waitUntil: 'load'});
+  ]).it("when ratio for males is '%d' category is '%s'", async (waist, expected) => {
+    await page.goto(`http://localhost:8080/waistHipResult?waist=${waist}&hip=1&sex=male`, {waitUntil: 'load'});
   
     const result = await page.evaluate(() => {
       return document.getElementById("category").innerText;
@@ -127,8 +127,8 @@ describe("waist to hip test", () => {
       [0.75, "Normal weight"],
       [0.82, "Overweight"],
       [0.90, "Obese"]
-  ]).it("when ratio for females is '%d' category is '%s'", async (ratio, expected) => {
-    await page.goto(`http://localhost:8080/waistHipResult?waist=${ratio}&hip=10`, {waitUntil: 'load'});
+  ]).it("when ratio for females is '%d' category is '%s'", async (waist, expected) => {
+    await page.goto(`http://localhost:8080/waistHipResult?waist=${waist}&hip=1&sex=female`, {waitUntil: 'load'});
   
     const result = await page.evaluate(() => {
       return document.getElementById("category").innerText;
@@ -138,17 +138,16 @@ describe("waist to hip test", () => {
   });
 
   each([
-    ["NaN", "Ratio must be a number"],
-    [-0.01, "Ratio cannot be a negative value"],
-    [0, "Ratio cannot be zero"],
-    [0, "Division by zero"]
+    ["NaN", "Waist to hip ratio must be a number"],
+    [-0.01, "Waist to hip ratio cannot be a negative value"],
+    [0, "Waist to hip ratio cannot be zero"]
   ]).it("when Ratio is '%d' shows error '%s'", async (ratio, expected) => {
-    await page.goto(`http://localhost:8080/waistHipResult?waist=${ratio}&hip=10`, {waitUntil: 'load'});
+    await page.goto(`http://localhost:8080/waistHipResult?waist=${ratio}&hip=1&sex=male`, {waitUntil: 'load'});
   
     const result = await page.evaluate(() => {
       return document.getElementById("category").innerText;
     });
 
     expect(result).toBe(expected);
-  });*/
+  });
 });
