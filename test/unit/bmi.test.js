@@ -47,13 +47,13 @@ describe("waist to hip test", () => {
         expect(ratio).toBe(1);
     });
 
-   /*test("has correct categories", () => {
+   test("has correct categories", () => {
         expect("Normal weight").toBe(calculator.waistHipCategories.normal);
         expect("Overweight").toBe(calculator.waistHipCategories.overweight);
         expect("Obese").toBe(calculator.waistHipCategories.obese);
     });
 
-    each([
+    /*each([
         [0.89, "Normal weight"],
         [0.90, "Overweight"],
         [0.99, "Overweight"],
