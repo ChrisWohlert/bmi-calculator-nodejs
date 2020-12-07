@@ -1,6 +1,5 @@
 
 
-
 const calculateBMI = (cm, kg) => {
     const meter = cm / 100;
     const bmi = kg / (meter * meter);
@@ -46,17 +45,9 @@ const waistHipCategories = {
     obese: "Obese"
 }
 
-const calculateWaistToHipCategory = (waistHipRatio) => {
-    if (isNaN(waistHipRatio)) {
-        throw 'Waist to hip ratio must be a number';
-    }
-    else if (waistHipRatio < 0) {
-        throw 'Waist to hip ratio cannot be a negative value';
-    }
-    else if (waistHipRatio == 0) {
-        throw 'Waist to hip ratio cannot be zero';
-    }
-    else if (waistHipRatio < 0.9) {
+const calculateWaistToHipCategoryForMales = (waistHipRatio) => {
+    validateWaistHipRatio(waistHipRatio);
+    if (waistHipRatio < 0.9) {
         return waistHipCategories.normal;
     }
     else if (waistHipRatio < 1) {
@@ -67,11 +58,37 @@ const calculateWaistToHipCategory = (waistHipRatio) => {
     }
 }
 
+const calculateWaistToHipCategoryForFemales = (waistHipRatio) => {
+    validateWaistHipRatio(waistHipRatio);
+    if (waistHipRatio < 0.8) {
+        return waistHipCategories.normal;
+    }
+    else if (waistHipRatio < 0.85) {
+        return waistHipCategories.overweight;
+    }
+    else {
+        return waistHipCategories.obese;
+    }
+}
+
+const validateWaistHipRatio = (waistHipRatio) => {    
+    if (isNaN(waistHipRatio)) {
+        throw 'Waist to hip ratio must be a number';
+    }
+    else if (waistHipRatio < 0) {
+        throw 'Waist to hip ratio cannot be a negative value';
+    }
+    else if (waistHipRatio == 0) {
+        throw 'Waist to hip ratio cannot be zero';
+    }
+}
+
 module.exports = {
     calculateBMI,
     calculateCategory,
     categories,
     calculateWaistToHipRatio,
     waistHipCategories,
-    calculateWaistToHipCategory
+    calculateWaistToHipCategoryForMales,
+    calculateWaistToHipCategoryForFemales
 }

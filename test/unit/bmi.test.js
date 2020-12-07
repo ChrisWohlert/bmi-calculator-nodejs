@@ -59,7 +59,7 @@ describe("waist to hip test", () => {
         [0.99, "Overweight"],
         [1, "Obese"]
     ]).it("when calculated for males ratio is '%d' category is '%s'", (waistHipRatio, expected) => {
-        expect(calculator.calculateWaistToHipCategory(waistHipRatio)).toBe(expected);
+        expect(calculator.calculateWaistToHipCategoryForMales(waistHipRatio)).toBe(expected);
     });
 
     each([
@@ -67,15 +67,24 @@ describe("waist to hip test", () => {
         [-0.1, "Waist to hip ratio cannot be a negative value"],
         [0, "Waist to hip ratio cannot be zero"]
     ]).it("when calculated waist to hip is '%d' throws invalid exception", (bmi, expected) => {
-        expect(() => calculator.calculateWaistToHipCategory(bmi)).toThrow(expected);
+        expect(() => calculator.calculateWaistToHipCategoryForMales(bmi)).toThrow(expected);
     });
 
-    /*each([
+    each([
         [0.79, "Normal weight"],
         [0.80, "Overweight"],
         [0.84, "Overweight"],
         [0.85, "Obese"]
     ]).it("when calculated for females ratio is '%d' category is '%s'", (waistHipRatio, expected) => {
-        expect(calculator.calculateWaistToHipCategory(waistHipRatio)).toBe(expected);
-    });*/
+        expect(calculator.calculateWaistToHipCategoryForFemales(waistHipRatio)).toBe(expected);
+    });
+
+    each([
+        ["NaN", "Waist to hip ratio must be a number"],
+        [-0.1, "Waist to hip ratio cannot be a negative value"],
+        [0, "Waist to hip ratio cannot be zero"]
+    ]).it("when calculated waist to hip is '%d' throws invalid exception", (bmi, expected) => {
+        expect(() => calculator.calculateWaistToHipCategoryForFemales(bmi)).toThrow(expected);
+    });
+
 });
